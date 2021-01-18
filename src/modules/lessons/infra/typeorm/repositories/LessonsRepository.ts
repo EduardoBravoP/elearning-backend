@@ -30,7 +30,9 @@ class LessonsRepository implements ILessonsRepository {
 
   public async findAllByCourseId(course_id: string): Promise<Lesson[] | undefined> {
     const lessons = await this.ormRepository.find({
-      course_id: course_id
+      where: {
+        course_id
+      }
     })
 
     return lessons;
