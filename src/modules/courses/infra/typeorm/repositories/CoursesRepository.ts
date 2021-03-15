@@ -39,8 +39,6 @@ class CoursesRepository implements ICoursesRepository {
       name: Like(`%${name}%`)
     })
 
-    console.log(course)
-
     return course;
   }
 }
