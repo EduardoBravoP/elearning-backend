@@ -1,6 +1,6 @@
 import ICreateCourseDTO from '@modules/courses/dtos/ICreateCourseDTO';
 import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository'
-import { getRepository, Repository } from 'typeorm'
+import { getRepository, Like, Repository } from 'typeorm'
 import Course from '../entities/Course'
 
 class CoursesRepository implements ICoursesRepository {
@@ -30,6 +30,16 @@ class CoursesRepository implements ICoursesRepository {
 
   public async findById(id: string): Promise<Course | undefined> {
     const course = await this.ormRepository.findOne(id);
+
+    return course;
+  }
+
+  public async findByName(name: string): Promise<Course[] | undefined> {
+    const course = await this.ormRepository.find({
+      name: Like(`%${name}%`)
+    })
+
+    console.log(course)
 
     return course;
   }

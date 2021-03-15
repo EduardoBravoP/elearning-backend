@@ -6,4 +6,5 @@ export default interface ILessonsRepository {
   save(course: Course): Promise<Course>;
   findAll(): Promise<Course[] | undefined>;
   findById(id: string): Promise<Course | undefined>;
+  findByName(name: string): Promise<Course[] | undefined>;
 }
